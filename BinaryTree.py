@@ -14,7 +14,9 @@ class Tree(object):
         self.left = None
         self.right = None
 
-from collecitons import Counter          
+
+
+from collections import Counter          
 def restoreBinaryTree(inorder, preorder):
     """Inorder and preorder lsts to Binary Tree"""
     if len(inorder) == 1:
@@ -120,12 +122,69 @@ def lstByDepth(T, depth = 0, d = {}):
             d[depth] += [T.value]
         #print(depth)
         depth += 1
-        d = lstByDepth(T.right, depth, d)
-        d = lstByDepth(T.left, depth, d)
+        lstByDepth(T.right, depth, d)
+        lstByDepth(T.left, depth, d)
     return d
+
+
 
 dBD_mBST = lstByDepth(mBST,0,{})
 dBD_T = lstByDepth(T,0,{})
+
+
+
+def lstLeaf(T, lst = []):
+    if T:
+        if not T.left and not T.right:
+            lst += [T.value]
+        elif T.left and not T.right:
+            lstLeaf(T.left,lst)
+        elif T.right and not T.left:
+            lstLeaf(T.right,lst)
+        else:
+            lstLeaf(T.left,lst)
+            lstLeaf(T.right, lst)
+    return lst
+
+
+lstLeaf(T,[])
+lstLeaf(mBST,[])
+dBD_T = lstLeaf(T,[])
+
+
+def lstNodeSum(T, s = 0, lst = []):
+    if T:
+        if not T.left and not T.right:
+            s += T.value
+            lst += [s]
+        elif T.left and not T.right:
+            lstNodeSum(T.left, s + T.value, lst)
+        elif T.right and not T.left:
+            lstNodeSum(T.right, s + T.value, lst)
+        else:
+            lstNodeSum(T.left, s + T.value, lst)
+            lstNodeSum(T.right, s + T.value, lst)
+    return lst
+
+lstNodeSum(T, 0, [])
+
+
+def lstTreePath(T, lst_sub = [], lst = []):
+    if T:
+        if not T.left and not T.right:
+            lst.append(lst_sub + [T.value])
+        elif T.left and not T.right:
+            lstTreePath(T.left, lst_sub + [T.value], lst)
+        elif T.right and not T.left:
+            lstTreePath(T.right, lst_sub + [T.value], lst)
+        else:
+            lstTreePath(T.left, lst_sub + [T.value], lst)
+            lstTreePath(T.right, lst_sub + [T.value], lst)
+    return lst
+
+lstTreePath(T, [], [])
+
+
 
 
 
