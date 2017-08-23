@@ -87,8 +87,8 @@ mBST_pre
 mBST2 = restoreBinaryTree(mBST_in, mBST_pre)
 
 def isTreeIdentical(T1,T2):
-    if not T1 and T2: return false
-    if not T2 and T1: return false
+    if not T1 and T2: return False
+    if not T2 and T1: return False
     if not T2 and not T1: return True
     return (T1.value == T2.value 
     and isTreeIdentical(T1.left,T2.left) 
@@ -149,7 +149,7 @@ def lstLeaf(T, lst = []):
 
 lstLeaf(T,[])
 lstLeaf(mBST,[])
-dBD_T = lstLeaf(T,[])
+
 
 
 def lstNodeSum(T, s = 0, lst = []):
@@ -167,6 +167,7 @@ def lstNodeSum(T, s = 0, lst = []):
     return lst
 
 lstNodeSum(T, 0, [])
+lstNodeSum(mBST, 0, [])
 
 
 def lstTreePath(T, lst_sub = [], lst = []):
@@ -183,6 +184,7 @@ def lstTreePath(T, lst_sub = [], lst = []):
     return lst
 
 lstTreePath(T, [], [])
+lstTreePath(mBST, 0, [])
 
 
 
