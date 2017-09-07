@@ -116,3 +116,10 @@ rslt2 = (x*x for x in lst) ### ()
 rslt2
 rslt2_lst = list(rslt2)
 rslt2_lst
+
+#https://www.youtube.com/watch?v=DEwgZNC-KyE
+import os
+import glob
+os.chdir("Pictures")
+for file in glob.glob("*.jpg"):
+    print(file)
